@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>MuzMatch</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./../socket.io/socket.io.js"></script>
+    <script>
+        var socket = io()
+        socket.on('test', (number)=> {
+            document.getElementById('test').innerHTML = number
+        })
+    </script>
+
+
+</head>
+<body>
+    <h1 id="test">Hello World!</h1>
+    <div id="app">{{ message }}</div>
+
+    <script src="./dist/main.js"></script>
+</body>
+</html>

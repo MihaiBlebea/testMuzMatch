@@ -1,0 +1,30 @@
+
+version: "2"
+services:
+    server:
+        container_name: server
+        build: .
+        restart: always
+        ports:
+            - "8080:8080"
+        depends_on:
+            - mongo
+        links:
+            - mongo
+
+    # client:
+    #     container_name: client
+    #     build: ./docker/node
+    #     ports:
+    #         - "3000:3000"
+    #     links:
+    #         - server
+
+    mongo:
+        container_name: mongo
+        image: mongo
+        restart: always
+        volumes:
+            - ./server/storage:/data/db
+        ports:
+            - "27017:27017"
