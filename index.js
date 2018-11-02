@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 
 const Comment = require('./database/models/Comment')
 
-const port = 3000
+const port = 8802
 
 
 app.use('/dist', express.static(__dirname + '/dist'))

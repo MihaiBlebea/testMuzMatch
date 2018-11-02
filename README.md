@@ -1,27 +1,22 @@
 ### Install
 
-#### Requirements
-
-- Must have docker installed
-- Must have node installed
-
 
 #### Steps
 
 - Unzip folder
 - Run "docker-compose up -d --build"
-- Run "npm run build"
-- Run "npm run populate"
+- Run "npm run container-build"
+- Run "npm run container-populate"
 
 
 ### Usage
 
-- Navigate to "http://localhost:3000"
-- You can write comments and post them to the video comment box
+- Navigate to "http://localhost:8802" (default port number lol)
+- You can write comments and post them to the comment box
 - When a new comment is added, the comment box will scroll to the latest by default.
-- If you want to check a previous comment, the autoscroll will be turned off when you scroll the box up
+- If you want to check a previous comment, the autoscroll will turn off and allow you to scroll the box up, without it jumping to the bottom whenever a new message comes in
 - You can manual switch autoscroll on/off
-- You can switch the audio on/off. If audio is on, you will get a short notify sound when a new comment is posted
+- You can switch the audio on/off. If audio is on, you will get a short and sweet notify sound when a new comment is posted (not annoying at all haha)
 
 
 ### How does it work?

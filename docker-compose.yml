@@ -1,24 +1,14 @@
 
-version: "2"
+version: "3"
 services:
     server:
         container_name: server
         build: .
         restart: always
         ports:
-            - "8080:8080"
-        depends_on:
-            - mongo
+            - "${SERVER_PORT}:${SERVER_PORT}"
         links:
             - mongo
-
-    # client:
-    #     container_name: client
-    #     build: ./docker/node
-    #     ports:
-    #         - "3000:3000"
-    #     links:
-    #         - server
 
     mongo:
         container_name: mongo

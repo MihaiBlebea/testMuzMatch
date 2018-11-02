@@ -33,7 +33,7 @@ export default {
                 let payload = {
                     message: this.message
                 }
-                axios.post('http://localhost:3000/message', payload).then((result)=> {
+                axios.post('/message', payload).then((result)=> {
                     this.$emit('user-msg-added', result.data)
                     this.message = null
                 }).catch((error)=> {

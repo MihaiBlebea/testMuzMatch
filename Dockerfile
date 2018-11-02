@@ -10,6 +10,6 @@ RUN npm install
 
 COPY . /usr/src/app
 
-EXPOSE 3000
+EXPOSE ${SERVER_PORT}
 
-CMD [ "npm", "run", "watch" ]
+CMD [ "npm", "run", "start" ]

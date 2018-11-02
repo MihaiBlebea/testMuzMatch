@@ -8,7 +8,9 @@
         "start": "node index.js",
         "build": "webpack --config webpack.config.dev.js",
         "watch": "nodemon index.js",
-        "populate": "node database/populate-messages.js"
+        "populate": "node database/populate-messages.js",
+        "container-build": "docker-compose exec server npm run build",
+        "container-populate": "docker-compose exec server npm run populate"
     },
     "author": "",
     "license": "ISC",
