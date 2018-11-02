@@ -7,10 +7,10 @@
                      src="http://www.fastrackerzkennel.com/wp-content/uploads/2014/03/male-placeholder-image.jpeg"/>
             </div>
             <div class="col-5 col-md-5 px-0">
-                <small><strong style="color: #e8516e;">Roger Brown</strong></small>
+                <small><strong style="color: #e8516e;">{{ commentAuthor }}</strong></small>
             </div>
             <div class="col-5 col-md-4 px-md-0 text-right text-md-center">
-                <small>10.ian.2018</small>
+                <small>{{ commentTime }}</small>
             </div>
         </div>
         <div class="px-3">
@@ -24,6 +24,14 @@
 export default {
     props: {
         commentMessage: {
+            required: true,
+            type: String
+        },
+        commentAuthor: {
+            required: true,
+            type: String
+        },
+        commentTime: {
             required: true,
             type: String
         }

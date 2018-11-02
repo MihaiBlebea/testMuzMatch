@@ -16,7 +16,7 @@ CommentSchema.methods.toJSON = function() {
     return {
         _id:     commentObject._id,
         message: commentObject.message,
-        author:  commentObject.author
+        author:  commentObject.author,
     }
 }
 

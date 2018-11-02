@@ -1,5 +1,9 @@
-import VueComment from 'VueComment'
+import VueComment from './VueComment.vue'
+import VueInput from './VueInput.vue'
+import VueCheckBox from './VueCheckBox.vue'
 
-export default {
-    VueComment
+export {
+    VueComment,
+    VueInput,
+    VueCheckBox
 }

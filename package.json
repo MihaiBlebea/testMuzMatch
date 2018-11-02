@@ -7,7 +7,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node index.js",
         "build": "webpack --config webpack.config.dev.js",
-        "watch": "nodemon index.js"
+        "watch": "nodemon index.js",
+        "populate": "node database/populate-messages.js"
     },
     "author": "",
     "license": "ISC",

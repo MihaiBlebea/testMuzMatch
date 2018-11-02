@@ -7,7 +7,9 @@
                  style="height:400px; overflow-y: scroll;">
                 <VueComment v-for="(comment, index) in comments"
                             :key="index"
-                            :comment-message="comment.message"></VueComment>
+                            :comment-message="comment.message"
+                            :comment-author="comment.author"
+                            :comment-time="comment.time"></VueComment>
             </div>
 
             <div class="border-top p-1">
@@ -26,16 +28,12 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
 
 <script>
-import VueComment from './components/VueComment.vue'
-import VueInput from './components/VueInput.vue'
-import VueCheckBox from './components/VueCheckBox.vue'
-
+import { VueComment, VueInput, VueCheckBox } from './components/index.js'
 
 export default {
     name: 'App',
@@ -47,10 +45,7 @@ export default {
     data: function()
     {
         return {
-            comments: [
-                { message: 'ceva' },
-                { message: 'altceva' }
-            ],
+            comments: [],
             autoScroll: true,
             scrollPosition: 0,
             audio: false
@@ -59,10 +54,18 @@ export default {
     methods: {
         userMessageAdd: function(event)
         {
+            event.time = this.getCurrentTime()
             this.comments.push(event)
             this.autoScroll = true
             this.playNotifySound()
             this.scrollToEnd()
+        },
+        getCurrentTime: function()
+        {
+            let date = new Date()
+            let minutes = (String(date.getMinutes()).length == 1) ? '0' + date.getMinutes() : date.getMinutes()
+            let seconds = (String(date.getSeconds()).length == 1) ? '0' + date.getSeconds() : date.getSeconds()
+            return date.getHours() + ':' + minutes + ':' + seconds
         },
         scrollToEnd: function()
         {
@@ -106,8 +109,10 @@ export default {
     mounted: function()
     {
         var socket = io()
-        socket.on('send-message', (message)=> {
-            this.comments.push(JSON.parse(message))
+        socket.on('send-message', (comment)=> {
+            comment = JSON.parse(comment)
+            comment.time = this.getCurrentTime()
+            this.comments.push(comment)
             this.playNotifySound()
             this.scrollToEnd()
         })

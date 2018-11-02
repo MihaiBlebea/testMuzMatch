@@ -25,7 +25,7 @@ app.get('/', (request, response)=> {
 app.post('/message', (request, response)=> {
     var comment = new Comment({
         message: request.body.message,
-        author:  'Mihai Blebea'
+        author:  'Me'
     })
 
     comment.save().then((comment)=> {
@@ -35,23 +35,25 @@ app.post('/message', (request, response)=> {
     })
 })
 
+
 io.on('connection', (socket)=> {
     console.log('a user connected')
 
     // Get all comments
-    Comment.find({}).then((comments)=> {
+    Comment.find({ author: { $ne: 'Me' } }).then((comments)=> {
 
-        setInterval(()=> {
-            socket.emit('send-message', JSON.stringify( comments[0] ))
-        }, 5000)
+        (function loop(comments) {
+            let interval = Math.floor(Math.random() * 12) + 1
+            setTimeout(()=> {
+                let randomMsgIndex = Math.floor(Math.random() * comments.length)
+                socket.emit('send-message', JSON.stringify( comments[randomMsgIndex] ))
+                loop(comments)
+            }, interval * 1000)
+        })(comments)
 
     }).catch((error)=> {
         console.log(error)
     })
-
-    // setTimeout(()=> {
-    //     socket.emit('test', 700)
-    // }, 5000)
 
     socket.on('disconnect', ()=> {
         console.log('user disconnected')
