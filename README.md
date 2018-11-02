@@ -1,9 +1,8 @@
 ### Install
 
-
 #### Steps
 
-- Unzip folder
+- Unzip folder or clone repo
 - Run "docker-compose up -d --build"
 - Run "npm run container-build"
 - Run "npm run container-populate"
