@@ -1,28 +1,22 @@
 const connect = require('./../connect')
 
 const CommentSchema = connect.Schema({
-    title: {
+    message: {
         type: String,
         required: true
     },
-    content: {
+    author: {
         type: String,
         required: true
-    },
-    isApproved: {
-        type: Boolean,
-        required: true,
-        default: false
     }
 })
 
 CommentSchema.methods.toJSON = function() {
     var commentObject = this.toObject()
     return {
-        _id:        commentObject._id,
-        title:      commentObject.title,
-        content:    commentObject.content,
-        isApproved: commentObject.isApproved,
+        _id:     commentObject._id,
+        message: commentObject.message,
+        author:  commentObject.author
     }
 }
 
